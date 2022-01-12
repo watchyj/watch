@@ -5,6 +5,7 @@
         <link th:href="@{/css2/join.css}" rel="stylesheet"/>
         <link th:href="@{/css2/styles.css}" rel="stylesheet"/>
         <link th:href="@{/css2/modal.css}" rel="stylesheet"/>
+        <link id="contextPathHolder" th:data-contextPath="${#httpServletRequest.getContextPath()}"/>
 
         <!--        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
         <!--        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>-->
@@ -93,10 +94,19 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="LYJ :${waitingDTO.dtoList}" class="tr-list waiting-box">
-                                    <th scope="row">[[${LYJ.memberNickname}]]</th>
-                                    <td>[[${LYJ.partyMember}]]</td>
-                                    <td>[[${LYJ.memberMobile}]]</td>
-                                    <td>[[${#temporals.format(LYJ.regDate, 'yyyy/MM/dd HH:mm')}]]</td>
+                                    <th scope="row" class="waiting-body wt-nickName">[[${LYJ.memberNickname}]]</th>
+                                    <td class="waiting-body wt-partyMember">[[${LYJ.partyMember}]]</td>
+                                    <td class="waiting-body wt-memberMobile">[[${LYJ.memberMobile}]]</td>
+                                    <td class="waiting-body">[[${#temporals.format(LYJ.regDate, 'yyyy/MM/dd HH:mm')}]]
+                                    </td>
+                                    <td class="waiting-body wt-memberMobile" style="display:none;">
+                                        [[${LYJ.memberMobile}]]
+                                    </td>
+                                    <td class="waiting-body wt-waitingNum" style="display:none;">[[${LYJ.waitingNum}]]
+                                    </td>
+                                    <td class="waiting-body wt-storeNum" style="display:none;">[[${LYJ.storeNum}]]</td>
+                                    <td class="waiting-body wt-memberNum" style="display:none;">[[${LYJ.memberNum}]]
+                                    </td>
                                 </tr>
                                 </tbody>
 
@@ -143,6 +153,10 @@
         </div>
         <div class="end-pg"></div>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous"></script>
+
         <script th:src="@{/js/callWaiting.js}"></script>
 
         <script th:inline="javascript">
@@ -180,16 +194,14 @@
                             <input class="form-control" type="text" id="modal-memberNum" name="memberNum">
                         </div>
                         <div class="form-group" style="margin-bottom:30px;">
-                            <span class="span21">상호명</span>
-                            <input class="form-control" type="text-name" id="storeName" name="storeName" readonly>
-                        </div>
-                        <div class="form-group" style="margin-bottom:30px;">
                             <span class="span21">닉네임</span>
-                            <input class="form-control" type="text-name" id="memberNickname" readonly>
+                            <input class="form-control" type="text-name" id="memberNickname"
+                                   th:value="${member.memberNickname}" readonly>
                         </div>
                         <div class="form-group" style="margin-bottom:30px;">
                             <span class="span21">연락처</span>
-                            <input class="form-control" type="text-mobile" id="modal-memberMobile" readonly>
+                            <input class="form-control" type="text-mobile" id="modal-memberMobile"
+                                   th:value="${member.memberMobile}" readonly>
                         </div>
                         <div class="form-group" style="margin-bottom:30px;">
                             <span class="span21">인원수</span>
@@ -202,9 +214,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-info modal-btn">연락하기</button>
-                        <button type="button" class="btn btn-info modal-btn">입장완료</button>
-                        <button type="button" class="btn btn-info modal-btn">취소하기</button>
+                        <button type="button" class="btn btn-info modal-btn go-call21">연락하기</button>
+                        <button type="button" class="btn btn-info modal-btn go-walkIn21">입장완료</button>
+                        <button type="button" class="btn btn-info modal-btn go-cancel21">취소하기</button>
                     </div>
                 </div>
             </div>
