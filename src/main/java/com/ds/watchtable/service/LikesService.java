@@ -13,6 +13,7 @@ public interface LikesService {
     default Likes dtoToEntity(LikesDTO likesDTO) {
         Likes likes = Likes.builder()
             .likesNum(likesDTO.getLikesNum())
+            .likes(likesDTO.getLikes())
             .member(Member.builder()
                     .memberNum(likesDTO.getMemberNum())
                     .build())
@@ -26,6 +27,7 @@ public interface LikesService {
     default LikesDTO entityToDTO(Likes likes) {
         LikesDTO likesDTO = LikesDTO.builder()
                 .likesNum(likes.getLikesNum())
+                .likes(likes.getLikes())
                 .memberNum(likes.getMember().getMemberNum())
                 .storeNum(likes.getStore().getStoreNum())
                 .build();

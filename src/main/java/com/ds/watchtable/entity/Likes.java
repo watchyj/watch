@@ -16,6 +16,7 @@ public class Likes extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long likesNum;
 
+    private String likes;
 
     @JoinColumn(name = "memberNum")
     @ManyToOne(fetch = FetchType.LAZY)
