@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class LikesDTO {
     private Long likesNum;
+    private String likes;
 
     private Long memberNum;
 
