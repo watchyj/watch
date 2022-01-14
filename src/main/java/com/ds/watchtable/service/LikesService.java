@@ -8,9 +8,12 @@ import com.ds.watchtable.entity.Store;
 public interface LikesService {
     //좋아요 추가
     Long registerLikes(LikesDTO likesDTO);
+    //좋아요 취소
+    void remove(Long likesNum);
 
 
-    default Likes dtoToEntity(LikesDTO likesDTO) {
+
+        default Likes dtoToEntity(LikesDTO likesDTO) {
         Likes likes = Likes.builder()
             .likesNum(likesDTO.getLikesNum())
             .likes(likesDTO.getLikes())

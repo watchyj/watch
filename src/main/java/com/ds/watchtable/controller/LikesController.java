@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,6 +26,14 @@ public class LikesController {
     public ResponseEntity<Long> addLikes(@RequestBody LikesDTO likesDTO) {
         Long likesNum = likesService.registerLikes(likesDTO);
         return new ResponseEntity<>(likesNum, HttpStatus.OK);
+    }
+
+    //좋아요 취소
+    @DeleteMapping("/modifyLikes/{storeNum}/{likesNum}")
+    public ResponseEntity<Long> cancelWaiting( @PathVariable Long likesNum){
+        likesService.remove(likesNum);
+        log.info("deletlikescontroller======"+likesNum);
+        return new ResponseEntity<>( likesNum, HttpStatus.OK);
     }
 
 
