@@ -22,4 +22,12 @@ public class LikesServiceImpl implements LikesService{
         return likes.getLikesNum();
     }
 
+    //좋아요 취소
+    @Override
+    public void remove(Long likesNum) {
+        log.info("likesNum====="+likesNum);
+        likesRepository.deleteById(likesNum);
+    }
+
+
 }
