@@ -51,6 +51,27 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text">{{가게 이름}}</p>
+
+                                <table class="table table-striped likes-table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">가게이름</th>
+                                        <th scope="col">멤버넘</th>
+                                        <th scope="col">라이크넘</th>
+                                        <th scope="col">가게넘버</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="LEE :${userLikes.dtoList}">
+                                        <th scope="row">[[${LEE.storeName}]]</th>
+                                        <td>[[${LEE.memberNum}]]</td>
+                                        <td>[[${LEE.likesNum}]]</td>
+                                        <td>[[${LEE.storeNum}]]</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+
                             </div>
                         </div>
                     </div>
@@ -97,7 +118,6 @@
                                 </tr>
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
                 </div>
