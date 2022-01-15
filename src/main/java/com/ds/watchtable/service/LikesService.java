@@ -1,6 +1,8 @@
 package com.ds.watchtable.service;
 
 import com.ds.watchtable.dto.LikesDTO;
+import com.ds.watchtable.dto.PageRequestDTO;
+import com.ds.watchtable.dto.PageResultDTO;
 import com.ds.watchtable.entity.Likes;
 import com.ds.watchtable.entity.Member;
 import com.ds.watchtable.entity.Store;
@@ -10,6 +12,9 @@ public interface LikesService {
     Long registerLikes(LikesDTO likesDTO);
     //좋아요 취소
     void remove(Long likesNum);
+    //좋아요 리스트 (멤버)
+    PageResultDTO<LikesDTO, Likes> getUserLikes(PageRequestDTO requestDTO, Member member);
+
 
 
 
@@ -22,6 +27,7 @@ public interface LikesService {
                     .build())
             .store(Store.builder()
                     .storeNum(likesDTO.getStoreNum())
+                    .storeName(likesDTO.getStoreName())
                     .build())
             .build();
         return likes;
@@ -33,6 +39,9 @@ public interface LikesService {
                 .likes(likes.getLikes())
                 .memberNum(likes.getMember().getMemberNum())
                 .storeNum(likes.getStore().getStoreNum())
+                .storeName(likes.getStore().getStoreName())
+                .regDate(likes.getRegDate())
+                .modDate(likes.getModDate())
                 .build();
         return likesDTO;
     }

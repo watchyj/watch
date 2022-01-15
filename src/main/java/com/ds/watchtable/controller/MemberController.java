@@ -4,10 +4,7 @@ import com.ds.watchtable.dto.MemberDTO;
 import com.ds.watchtable.dto.PageRequestDTO;
 import com.ds.watchtable.dto.PageResultDTO;
 import com.ds.watchtable.security.dto.ClubAuthMemberDTO;
-import com.ds.watchtable.service.MemberService;
-import com.ds.watchtable.service.ReviewService;
-import com.ds.watchtable.service.StoreService;
-import com.ds.watchtable.service.WaitingService;
+import com.ds.watchtable.service.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +25,7 @@ public class MemberController {
     private final StoreService storeService;
     private final WaitingService waitingService;
     private final ReviewService reviewService;
+    private final LikesService likesService;
 
     //db 저장
     @PostMapping("/join/login")
@@ -52,6 +50,11 @@ public class MemberController {
         PageResultDTO userReview = reviewService.getUserReview(pageRequestDTO, principal.getMember());
         log.info("userReview>>11111" + userReview);
         model.addAttribute("userReview", userReview);
+
+        PageResultDTO userLikes = likesService.getUserLikes(pageRequestDTO, principal.getMember());
+        log.info("userLikes>>11111" + userLikes);
+        model.addAttribute("userLikes", userLikes);
+
 
 /*
         Store store = storeService.getStoreMember(principal.getMember());
