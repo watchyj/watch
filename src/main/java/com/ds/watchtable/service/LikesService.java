@@ -14,8 +14,8 @@ public interface LikesService {
     void remove(Long likesNum);
     //좋아요 리스트 (멤버)
     PageResultDTO<LikesDTO, Likes> getUserLikes(PageRequestDTO requestDTO, Member member);
-
-
+    //좋아요 데이터 사실 위에꺼 써도 되지않나 생각중..
+    LikesDTO getLikes(Member member, Long storeNum);
 
 
         default Likes dtoToEntity(LikesDTO likesDTO) {

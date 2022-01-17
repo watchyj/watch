@@ -1,12 +1,10 @@
 package com.ds.watchtable.controller;
 
-import com.ds.watchtable.dto.PageRequestDTO;
-import com.ds.watchtable.dto.PageResultDTO;
-import com.ds.watchtable.dto.PosTableDTO;
-import com.ds.watchtable.dto.StoreDTO;
+import com.ds.watchtable.dto.*;
 import com.ds.watchtable.entity.PosTable;
 import com.ds.watchtable.entity.Store;
 import com.ds.watchtable.security.dto.ClubAuthMemberDTO;
+import com.ds.watchtable.service.LikesService;
 import com.ds.watchtable.service.StoreService;
 import com.ds.watchtable.service.WaitingService;
 import lombok.RequiredArgsConstructor;
@@ -31,19 +29,26 @@ public class StoreController {
     private final StoreService storeService;
     @Autowired
     private final WaitingService waitingService;
+    private final LikesService likesService;
 
     //store/detail - member, store 정보 넘기기
     @GetMapping("/store/detail")
     public void read(Long storeNum, @ModelAttribute("pageRequestDTO")
-            PageRequestDTO pageRequestDTO, Model model, Long reviewNum,
+            PageRequestDTO pageRequestDTO, Model model, Long likesNum,
                      @AuthenticationPrincipal ClubAuthMemberDTO principal) {
         if (principal != null) {
             model.addAttribute("member", principal.getMember());
             log.info("principal.getMember()" + principal.getMember());
         }
+
         StoreDTO storeDTO = storeService.getStore(storeNum);
         log.info("storeDTO()>>" + storeDTO);
         model.addAttribute("dto", storeDTO);
+
+        LikesDTO likesDTO = likesService.getLikes(principal.getMember(), storeNum);
+        log.info("likesDTO()>>" + likesDTO);
+        model.addAttribute("likesDTO", likesDTO);
+
 
         Store posTable1 = storeService.getPosTable1(storeNum);
         log.info("storeDTO()>>" + posTable1);

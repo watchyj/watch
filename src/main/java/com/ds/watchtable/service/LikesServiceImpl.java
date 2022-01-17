@@ -1,12 +1,7 @@
 package com.ds.watchtable.service;
 
-import com.ds.watchtable.dto.LikesDTO;
-import com.ds.watchtable.dto.PageRequestDTO;
-import com.ds.watchtable.dto.PageResultDTO;
-import com.ds.watchtable.dto.WaitingDTO;
-import com.ds.watchtable.entity.Likes;
-import com.ds.watchtable.entity.Member;
-import com.ds.watchtable.entity.Waiting;
+import com.ds.watchtable.dto.*;
+import com.ds.watchtable.entity.*;
 import com.ds.watchtable.repository.LikesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -46,6 +41,13 @@ public class LikesServiceImpl implements LikesService{
         Page<Likes> result = likesRepository.getLikesByUser(pageable, member);
         Function<Likes, LikesDTO> fn = (entity -> entityToDTO(entity));
         return new PageResultDTO<>(result, fn);
+    }
+
+    //좋아요 데이터
+    @Override
+    public LikesDTO getLikes(Member member, Long storeNum) {
+        Likes likes = likesRepository.getById(member.getMemberNum());
+        return entityToDTO(likes);
     }
 
 
