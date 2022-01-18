@@ -30,7 +30,7 @@ public class LikesController {
 
     //좋아요 취소
     @DeleteMapping("/modifyLikes/{storeNum}/{likesNum}")
-    public ResponseEntity<Long> cancelWaiting( @PathVariable Long likesNum){
+    public ResponseEntity<Long> cancelLike( @PathVariable Long likesNum){
         likesService.remove(likesNum);
         log.info("deletlikescontroller======"+likesNum);
         return new ResponseEntity<>( likesNum, HttpStatus.OK);
