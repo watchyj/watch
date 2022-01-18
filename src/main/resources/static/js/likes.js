@@ -3,8 +3,11 @@ $(document).ready(function(e){
     var storeNum = $('#js-storeNum').text();
     var memberNum = $('#js-memberNum').text();
     var likes = $('.like-like');
+    var liking = $('.liking').text();
+    var likesNum = $('.js-likesNum').text();
 
     //좋아요 클릭....
+/*
     $(".like-like").on("click", function(){
         console.log("likelike");
         var data = {
@@ -13,7 +16,6 @@ $(document).ready(function(e){
             likes: "1"
         };
         console.log(data);
-
         $.ajax({
             url: contextPath+'/addLikes/'+storeNum,
             type:"POST",
@@ -34,34 +36,32 @@ $(document).ready(function(e){
             }
         });
     });
+*/
 
     //라이크 유지하기 (수정중)
-    if (likes == "1") {
+    if (liking == "1") {
         $(".like-like").html("☆☆☆☆☆");
     }
 
     //좋아요 취소
-/*
     $(".like-like").on("click", function(){
-        console.log(likesNum);
-        var data = {likesNum: likesNum}
+            console.log(likesNum);
+            var data = {likesNum: likesNum}
 
-        $.ajax({
-        url: contextPath + '/modifyLikes/'+storeNum+"/"+likesNum,
-        type:"DELETE",
-        data:JSON.stringify(data),
-        contentType:"application/json; charset=utf-8",
-        dataType:"text",
-        success: function(data){
-                console.log("result: " + data);
-                self.location.reload();
-             },
-        error:function(data){
-            alert("delete_errorrrrrrrrrrrrrrrr");
-            }
+            $.ajax({
+            url: contextPath + '/modifyLikes/'+storeNum+"/"+likesNum,
+            type:"DELETE",
+            data:JSON.stringify(data),
+            contentType:"application/json; charset=utf-8",
+            dataType:"text",
+            success: function(data){
+                        console.log("result: " + data);
+                        $(".like-like").html("♡♡♡♡♡");
+                        //self.location.reload();
+                }
+            });
     });
-    });
-*/
+
 
 
 });

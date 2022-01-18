@@ -16,6 +16,7 @@ public class Likes extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long likesNum;
 
+    @Column(nullable = true)
     private String likes;
 
     @JoinColumn(name = "memberNum")
