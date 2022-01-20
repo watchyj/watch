@@ -47,15 +47,22 @@ public class StoreController {
         model.addAttribute("dto", storeDTO);
 
 
+/*
+        LikesDTO likesDTO = likesService.getLikes(storeNum);
+        log.info("likesDTO()>>" + likesDTO);
+        model.addAttribute("likesDTO", likesDTO);
+
+*/
         LikesDTO likesDTO = null;
         try {
-            if (likesNum == null) {
-                likesDTO = likesService.getLikes(principal.getMember(), storeNum);
+            if (likesNum != null) {
+                likesDTO = likesService.getLikes(storeNum);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
             model.addAttribute("likesDTO", likesDTO);
+        log.info(likesDTO);
 
 
         Store posTable1 = storeService.getPosTable1(storeNum);

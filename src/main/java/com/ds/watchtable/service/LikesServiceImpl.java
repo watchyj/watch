@@ -45,10 +45,18 @@ public class LikesServiceImpl implements LikesService{
 
     //좋아요 데이터
     @Override
-    public LikesDTO getLikes(Member member, Long storeNum) {
-        Likes likes = likesRepository.getById(member.getMemberNum());
+    public LikesDTO getLikes(Long storeNum) {
+        Likes likes = likesRepository.getById(storeNum);
         return entityToDTO(likes);
     }
+
+/*    @Override
+    public LikesDTO getLikes(Long storeNum) {
+        Store store = Store.builder().storeNum(storeNum).build();
+        LikesDTO likes = likesRepository.getByStore(store);
+
+        return likes;
+    }*/
 
 
 }
