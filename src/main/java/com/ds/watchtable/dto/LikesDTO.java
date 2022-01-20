@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.stream.DoubleStream;
 
 @Data
 @Builder
@@ -22,4 +23,5 @@ public class LikesDTO {
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;
+
 }

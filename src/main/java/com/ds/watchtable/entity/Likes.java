@@ -1,6 +1,8 @@
 package com.ds.watchtable.entity;
 
 import lombok.*;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 
@@ -16,9 +18,10 @@ public class Likes extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long likesNum;
 
-    @Column(nullable = true)
+    @Column
     private String likes;
 
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "memberNum")
     @ManyToOne(fetch = FetchType.LAZY)
     Member member;
