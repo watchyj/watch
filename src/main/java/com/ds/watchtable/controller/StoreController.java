@@ -1,6 +1,7 @@
 package com.ds.watchtable.controller;
 
 import com.ds.watchtable.dto.*;
+import com.ds.watchtable.entity.Likes;
 import com.ds.watchtable.entity.PosTable;
 import com.ds.watchtable.entity.Store;
 import com.ds.watchtable.security.dto.ClubAuthMemberDTO;
@@ -48,22 +49,21 @@ public class StoreController {
 
 
 /*
-        LikesDTO likesDTO = likesService.getLikes(storeNum);
+        LikesDTO likesDTO = likesService.liking(storeNum);
         log.info("likesDTO()>>" + likesDTO);
-        model.addAttribute("likesDTO", likesDTO);
-
+        model.addAttribute("liking", likesDTO);
 */
-        LikesDTO likesDTO = null;
-        try {
-            if (likesNum != null) {
-                likesDTO = likesService.getLikes(storeNum);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-            model.addAttribute("likesDTO", likesDTO);
-        log.info(likesDTO);
 
+
+        LikesDTO result = null;
+        try {
+            result = likesService.liking(storeNum);
+            model.addAttribute("liking", result);
+
+       } catch (Exception e) {
+            e.printStackTrace();
+        log.info(result);
+        }
 
         Store posTable1 = storeService.getPosTable1(storeNum);
         log.info("storeDTO()>>" + posTable1);

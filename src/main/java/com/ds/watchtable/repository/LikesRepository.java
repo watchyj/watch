@@ -1,6 +1,7 @@
 package com.ds.watchtable.repository;
 
 import com.ds.watchtable.dto.LikesDTO;
+import com.ds.watchtable.dto.StoreDTO;
 import com.ds.watchtable.entity.Likes;
 import com.ds.watchtable.entity.Member;
 import com.ds.watchtable.entity.Review;
@@ -20,8 +21,10 @@ public interface LikesRepository extends JpaRepository<Likes, Long > {
     @Query("select l from Likes l where l.store =:store")
     LikesDTO getByStore(Store store);
 
-/*    @EntityGraph(attributePaths = {"member"}, type = EntityGraph.
-            EntityGraphType.FETCH)
-    List<Likes> findByStore(Store store);*/
+    @Query("select l from Likes l where l.store =:store")
+    Likes getLikesByUserStore(Store store);
 
-}
+    @Query("select count(Likes.likesNum) from Likes where Likes.storeNum =:storeNum")
+    Long counting(Long storeNum);
+
+    }

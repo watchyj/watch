@@ -21,7 +21,6 @@ public class Likes extends BaseEntity{
     @Column
     private String likes;
 
-    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "memberNum")
     @ManyToOne(fetch = FetchType.LAZY)
     Member member;
