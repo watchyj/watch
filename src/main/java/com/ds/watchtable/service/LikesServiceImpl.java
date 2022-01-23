@@ -56,7 +56,8 @@ public class LikesServiceImpl implements LikesService{
     //좋아요 카운트
     @Override
     public Long counting(Long storeNum) {
-        return likesRepository.counting(storeNum);
+        Store store = Store.builder().storeNum(storeNum).build();
+        return likesRepository.counting(store);
     }
 
 
