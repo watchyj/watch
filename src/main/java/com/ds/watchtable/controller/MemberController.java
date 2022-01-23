@@ -55,14 +55,6 @@ public class MemberController {
         log.info("userLikes>>11111" + userLikes);
         model.addAttribute("userLikes", userLikes);
 
-
-/*
-        Store store = storeService.getStoreMember(principal.getMember());
-        model.addAttribute("dto", store);
-
-        PosTable posTable1 = storeService.getPosTable(store);
-        model.addAttribute("order", posTable1);
-*/
     }
 
     @PostMapping("/member/myinfo")

@@ -3,6 +3,7 @@ package com.ds.watchtable.service;
 import com.ds.watchtable.dto.*;
 import com.ds.watchtable.entity.*;
 import com.ds.watchtable.repository.LikesRepository;
+import com.ds.watchtable.repository.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import java.util.function.Function;
 public class LikesServiceImpl implements LikesService{
 
     private final LikesRepository likesRepository;
+    private final StoreRepository storeRepository;
 
     //DB저장
     @Override
@@ -45,18 +47,17 @@ public class LikesServiceImpl implements LikesService{
 
     //좋아요 데이터
     @Override
-    public LikesDTO getLikes(Long storeNum) {
-        Likes likes = likesRepository.getById(storeNum);
-        return entityToDTO(likes);
+    public LikesDTO liking(Long storeNum) {
+        Store store = Store.builder().storeNum(storeNum).build();
+        Likes likes = likesRepository.getLikesByUserStore(store);
+       return entityToDTO(likes);
     }
 
-/*    @Override
-    public LikesDTO getLikes(Long storeNum) {
-        Store store = Store.builder().storeNum(storeNum).build();
-        LikesDTO likes = likesRepository.getByStore(store);
-
-        return likes;
-    }*/
+    //좋아요 카운트
+    @Override
+    public Long counting(Long storeNum) {
+        return likesRepository.counting(storeNum);
+    }
 
 
 }

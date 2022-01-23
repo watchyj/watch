@@ -28,10 +28,11 @@
                         <h4 id="orderCountBasket" style="display:inline;">[[${order.orderCount}]] </h4>
                         <h4 style="display:inline;">/ 9    </h4>
                         <div class="like">
-                            <span class="js-likesNum">[[${likesDTO?.likesNum}]]</span>
-                            <span class="like-storeNum">[[${likesDTO?.storeNum}]]</span>
-                            <span class="liking">[[${likesDTO?.likes}]]</span>
-                            <span class="like-like">♡♡♡♡♡</span>
+                            <span class="js-likesNum">[[${liking?.likesNum}]]</span>
+                            <span class="like-storeNum">[[${liking?.storeNum}]]</span>
+                            <span class="liking">[[${liking?.likes}]]</span>
+
+                            <span class="like-like" >♡♡♡♡♡</span>
                             <span>좋아요 수: </span>
                         </div>
                         <button class="waiting-register21 colored-btn21" sec:authorize="hasRole('USER')">대기 등록하기</button>

@@ -15,7 +15,10 @@ public interface LikesService {
     //좋아요 리스트 (멤버)
     PageResultDTO<LikesDTO, Likes> getUserLikes(PageRequestDTO requestDTO, Member member);
     //좋아요 데이터..
-    LikesDTO getLikes(Long storeNum);
+//    LikesDTO getLikes(Long storeNum);
+    LikesDTO liking(Long storeNum);
+    //좋아요 카운팅
+    Long counting(Long storeNum);
 
 
         default Likes dtoToEntity(LikesDTO likesDTO) {
