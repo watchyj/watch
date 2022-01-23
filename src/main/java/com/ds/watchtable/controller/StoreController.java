@@ -47,14 +47,6 @@ public class StoreController {
         log.info("storeDTO()>>" + storeDTO);
         model.addAttribute("dto", storeDTO);
 
-
-/*
-        LikesDTO likesDTO = likesService.liking(storeNum);
-        log.info("likesDTO()>>" + likesDTO);
-        model.addAttribute("liking", likesDTO);
-*/
-
-
         LikesDTO result = null;
         try {
             result = likesService.liking(storeNum);
@@ -64,6 +56,22 @@ public class StoreController {
             e.printStackTrace();
         log.info(result);
         }
+
+
+/*        Long cnt = null;
+        try {
+            cnt = likesService.counting(storeNum);
+        model.addAttribute("cnt", cnt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+
+        Long cnt = likesService.counting(storeNum);
+        if (cnt != null){
+            model.addAttribute("cnt", cnt);
+        }
+
+
 
         Store posTable1 = storeService.getPosTable1(storeNum);
         log.info("storeDTO()>>" + posTable1);
